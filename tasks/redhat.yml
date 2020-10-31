@@ -27,3 +27,16 @@
       - frr-pythontools
     state: present
   become: true
+  notify:
+    - restart frr
+
+- name: redhat | Touch FRR reload log
+  file:
+    path: /var/log/frr/frr-reload.log
+    state: touch
+    owner: frr
+    group: frr
+    mode: 0644
+    modification_time: preserve
+    access_time: preserve
+  become: true
